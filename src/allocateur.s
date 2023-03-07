@@ -82,6 +82,7 @@ etatCalcul		DCD		controleThreadNP	; controle
 								
 				
 demoRestitution	PROC
+				IMPORT  PInitial
  				EXPORT  demoRestitution
 
 ; fct qui va faire une création de processus/restitution de contexte à partir d'une structure etatCalcul et
@@ -98,6 +99,9 @@ demoRestitution	PROC
 ; à vous d'écrire le code ici!!!!!!!!!!!!!!!!!!!!!!!!
 
 				LDR R2, = etatCalcul 		; Met dans R2 l'adresse de etatCalcul
+				LDR R3, [R2]				; Met dans R3 la valeur contenu à l'adresse de R2
+				MSR CONTROL, R3				; Met dans CONTROL le rgistre R3
+				
 				LDR R4, [R2, #4]			; Met dans R4 la valeur contenu à l'adresse de R2 avec un offset de 4
 				LDR R5, [R2, #8]			; Met dans R5 la valeur contenu à l'adresse de R2 avec un offset de 8
 				LDR R6, [R2, #12]			; etc.
@@ -113,11 +117,9 @@ demoRestitution	PROC
 				LDR R3, [R2, #40]           ; Met dans R3 la valeur contenu à l'adresse de R2 avec un offset de 40
 				MSR MSP, R3                 ; Met dans PSP le rgistre R3
 				
-				LDR R3, [R2]				; Met dans R3 la valeur contenu à l'adresse de R2
-				MSR CONTROL, R3				; Met dans CONTROL le rgistre R3
-				
 				LDR LR, [R2, #44]           ; On met dans LR la valeur contenu à l'adresse de R2 avec un offset de 44
-				LDR PC, LR                  ; On met dans PC la valeur de LR pour commencer le noyau
+				
+				B PInitial
   
 
 
