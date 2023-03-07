@@ -15,9 +15,9 @@ void static messageDemarrageNoyau()
 	
 	affiche("*** Démarrage du système ***");
 	
-	affiche("Binôme : à compléter");
+	affiche("Binôme : Thomas - Victor");
 	
-	affiche("Année 2018-2019");
+	affiche("Année 2022-2023");
 
 }
 
